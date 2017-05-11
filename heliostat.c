@@ -73,7 +73,7 @@ class hlsServoMot {
 
     void Set( const int pin, const int minAngle, const int zeroAngle, const int maxAngle ) {
       m_minAngle = minAngle;
-      m_maxAgle = maxAngle;
+      m_maxAngle = maxAngle;
 
       m_zeroAngle = zeroAngle;
       m_absAngle = m_minAngle;
@@ -135,7 +135,7 @@ class hlsServoMot {
     }
 
     int GetAbsAngle( ) {
-      return m_abAngle;
+      return m_absAngle;
     }
 
     int GetAngle( ) {
@@ -150,10 +150,10 @@ class hlsServoMot {
     void _SetAngleRotation( int *val ) {
       int totAngle = m_absAngle + *val;
 
-      if ( totAngle > m_max_angle ) {
+      if ( totAngle > m_maxAngle ) {
         *val = -m_absAngle + m_minAngle;
       }
-      else if ( totAngle < m_min_Angle ) {
+      else if ( totAngle < m_minAngle ) {
         *val = -m_absAngle + m_maxAngle;
       }
     }
@@ -277,7 +277,7 @@ unsigned _pulseIn( const int pin, const bool state ) {
 
     deltaTime = timerEnd - timerStart;
 
-    return duree;
+    return deltaTime;
   }
 
   return 0;
@@ -370,10 +370,11 @@ void Update( void ) {
       tmpValAzy = motAzyPoint;
       g_servoMirrorAzy.TurnFromAngle( motAzyPoint );
     }
-    if ( tmpValEle != gele ) {
+    if ( tmpValEle != tmpValEle ) {
       tmpValEle = motElePoint;
       g_servoMirrorEle.TurnFromAngle( motElePoint );
     }
+    
     PrintInfo( );
 
     g_startTimerUpdate = millis( );
