@@ -1,6 +1,6 @@
 #include <Wire.h>
 #include <Servo.h>
-#include "LiquidCrystal_I2C.h" //ajout de la librairie
+#include "LiquidCrystal_I2C.h"
 
 #define RESI_NIGHT          550   // 550 (0 - 1023)
 #define WIND_SPEED_WARNING  20.0f // km/h
